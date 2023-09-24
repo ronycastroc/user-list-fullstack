@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -34,7 +35,9 @@ export class UsersService {
       );
     }
 
-    const hashedPassword = this.generateJwtToken(password);
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    this.generateJwtToken(email);
 
     const user = this.userRepository.create({
       name,
@@ -63,8 +66,10 @@ export class UsersService {
     return `This action removes a #${id} user`;
   }
 
-  generateJwtToken(password: string): string {
-    const token = jwt.sign({ password }, process.env.JWT_SECRET);
+  generateJwtToken(email: string): string {
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
     return token;
   }
 }
