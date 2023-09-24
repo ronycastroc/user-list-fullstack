@@ -81,8 +81,18 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+
+    await this.userRepository.remove(user);
+
+    return {
+      message: 'Usuário removido com sucesso',
+    };
   }
 
   generateJwtToken(email: string): string {

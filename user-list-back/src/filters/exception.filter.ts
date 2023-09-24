@@ -16,7 +16,7 @@ export class CustomExceptionFilter implements ExceptionFilter {
     let message = 'Internal server error';
 
     if (status === HttpStatus.NOT_FOUND) {
-      message = 'Resource not found';
+      message = 'Not found';
     } else if (status === HttpStatus.BAD_REQUEST) {
       message = 'Bad request';
     }
