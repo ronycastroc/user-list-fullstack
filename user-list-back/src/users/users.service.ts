@@ -50,7 +50,11 @@ export class UsersService {
       password: hashedPassword,
     });
 
-    return await this.userRepository.save(user);
+    const userNoPass = await this.userRepository.save(user);
+
+    delete userNoPass.password;
+
+    return userNoPass;
   }
 
   async findAll(): Promise<User[]> {
@@ -59,12 +63,8 @@ export class UsersService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
   async update(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.userRepository.findOne({ where: { id: id } });
+    const user = await this.userRepository.findOne({ where: { id } });
 
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
@@ -82,7 +82,7 @@ export class UsersService {
   }
 
   async remove(id: number) {
-    const user = await this.userRepository.findOne({ where: { id: id } });
+    const user = await this.userRepository.findOne({ where: { id } });
 
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
