@@ -8,9 +8,11 @@ import { useEffect, useState } from "react";
 import { getUsers } from "../../services/user";
 import { User } from "../../models";
 import { TableContent } from "./style";
+import TableActions from "../../components/TableActions";
 
 export default function List() {
   const [users, setUsers] = useState<User[]>([]);
+  const [refresh, setRefresh] = useState<boolean>(false);
   const navigate = useNavigate();
 
   async function fetchUsers() {
@@ -25,7 +27,7 @@ export default function List() {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [users, refresh]);
 
   function homeNavigate() {
     navigate("/");
@@ -47,6 +49,7 @@ export default function List() {
                 <th>E-mail</th>
                 <th>Data de Criação</th>
                 <th>Data de Atualização</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -57,6 +60,9 @@ export default function List() {
                   <td>{user.email}</td>
                   <td>{user.createdAt}</td>
                   <td>{user.updatedAt}</td>
+                  <td>
+                    <TableActions id={user.id} refresh={refresh} setRefresh={setRefresh}/>                  
+                  </td>
                 </tr>
               ))}
             </tbody>
