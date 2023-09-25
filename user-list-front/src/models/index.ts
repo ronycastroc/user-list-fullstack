@@ -4,6 +4,8 @@ export interface UserForm {
   password: string;
 }
 
+export type PartialUserForm = Partial<UserForm>;
+
 export interface User {
   id: number;
   name: string;

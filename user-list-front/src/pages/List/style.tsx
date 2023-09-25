@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const TableContent = styled.div`
   width: 100%;
-  overflow-x: auto;
   
   table {
     width: 100%;
@@ -30,5 +29,9 @@ export const TableContent = styled.div`
 
   tr:hover {
     background-color: #e0e0e0;
+  }
+
+  p {
+    text-align: center;
   }
 `;

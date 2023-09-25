@@ -49,6 +49,7 @@ export default function Home() {
       resetForm();
       alert(error);
     }
+    // eslint-disable-next-line
   }, []);
 
   function resetForm() {

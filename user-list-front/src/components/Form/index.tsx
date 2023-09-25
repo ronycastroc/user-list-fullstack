@@ -5,10 +5,12 @@ interface FormProps {
   label: string;
   type: string;
   placeHolder: string;
-  inputRef: MutableRefObject<HTMLInputElement | null>;
+  inputRef?: MutableRefObject<HTMLInputElement | null>;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Form({ label, type, placeHolder, inputRef }: FormProps) {
+export default function Form({ label, type, placeHolder, inputRef,  value, onChange }: FormProps) {
   return (
     <FormContent>
       <label>{label}</label>
@@ -16,6 +18,8 @@ export default function Form({ label, type, placeHolder, inputRef }: FormProps) 
         type={type}
         placeholder={placeHolder}
         ref={inputRef}
+        value={value}
+        onChange={onChange}
         required
       />
     </FormContent>

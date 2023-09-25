@@ -41,34 +41,41 @@ export default function List() {
       <BoxContent>
         <Title>Lista de Usuários</Title>
         <TableContent>
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Data de Criação</th>
-                <th>Data de Atualização</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr key={index}>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.createdAt}</td>
-                  <td>{user.updatedAt}</td>
-                  <td>
-                    <TableActions id={user.id} refresh={refresh} setRefresh={setRefresh}/>                  
-                  </td>
+          {users.length === 0 ? (
+            <p>Não há usuários cadastrados.</p>
+          ) : (
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Data de Criação</th>
+                  <th>Data de Atualização</th>
+                  <th>Ações</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {users.map((user, index) => (
+                  <tr key={index}>
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                    <td>{user.email}</td>
+                    <td>{user.createdAt}</td>
+                    <td>{user.updatedAt}</td>
+                    <td>
+                      <TableActions
+                        user={user}
+                        refresh={refresh}
+                        setRefresh={setRefresh}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </TableContent>
-
       </BoxContent>
     </Content>
   );
