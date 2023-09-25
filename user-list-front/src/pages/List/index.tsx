@@ -7,6 +7,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { getUsers } from "../../services/user";
 import { User } from "../../models";
+import { TableContent } from "./style";
 
 export default function List() {
   const [users, setUsers] = useState<User[]>([]);
@@ -37,28 +38,31 @@ export default function List() {
       </ButtonTopContent>
       <BoxContent>
         <Title>Lista de Usuários</Title>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Data de Criação</th>
-              <th>Data de Atualização</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={index}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.createdAt}</td>
-                <td>{user.updatedAt}</td>
+        <TableContent>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Data de Criação</th>
+                <th>Data de Atualização</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={index}>
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.createdAt}</td>
+                  <td>{user.updatedAt}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </TableContent>
+
       </BoxContent>
     </Content>
   );
