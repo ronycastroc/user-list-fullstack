@@ -1,22 +1,21 @@
+import { MutableRefObject } from 'react';
 import { FormContent } from './style';
 
 interface FormProps {
   label: string;
-  value: string;
   type: string;
   placeHolder: string;
-  onChange: (value: string) => void;
+  inputRef: MutableRefObject<HTMLInputElement | null>;
 }
 
-export default function Form({ label, value, type, placeHolder, onChange }: FormProps) {
+export default function Form({ label, type, placeHolder, inputRef }: FormProps) {
   return (
     <FormContent>
       <label>{label}</label>
       <input
         type={type}
         placeholder={placeHolder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        ref={inputRef}
       />
     </FormContent>
   );
