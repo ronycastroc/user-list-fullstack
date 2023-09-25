@@ -1,17 +1,22 @@
 import { useCallback, useRef } from "react";
 import BoxContent from "../../components/BoxContent";
 import Form from "../../components/Form";
-import { Content } from "./style";
+import { ButtonBottonContent, ButtonTopContent, Content } from "./style";
 import Button from "../../components/Button";
 import Title from "../../components/Title";
 import { postUser } from "../../services/user";
 import { UserForm } from "../../models";
+import { useNavigate } from "react-router-dom";
+import { BsSend } from "react-icons/bs";
+import { AiOutlineBars } from "react-icons/ai";
 
 export default function Home() {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passRef = useRef<HTMLInputElement | null>(null);
   const confirmPassRef = useRef<HTMLInputElement | null>(null);
+
+  const navigate = useNavigate();
 
   const handleSubmit = useCallback(async () => {
     if (
@@ -39,8 +44,9 @@ export default function Home() {
       await postUser(body);
       resetForm();
 
-      alert("foi");
+      navigate("/user-list");
     } catch (error) {
+      resetForm();
       alert(error);
     }
   }, []);
@@ -60,8 +66,15 @@ export default function Home() {
     }
   }
 
+  function listNavigate() {
+    navigate("/user-list");
+  }
+
   return (
     <Content>
+      <ButtonTopContent>
+        <Button onClick={listNavigate}><AiOutlineBars />  Lista de Usuários</Button>
+      </ButtonTopContent>      
       <BoxContent>
         <Title>Cadastro de Usuários</Title>
         <Form
@@ -83,8 +96,10 @@ export default function Home() {
           label="Confirmação de senha"
           type="password"
           placeHolder="Confirme a senha"
-          inputRef={confirmPassRef} />      
-          <Button onClick={handleSubmit}>Enviar</Button>       
+          inputRef={confirmPassRef} />
+          <ButtonBottonContent>
+            <Button onClick={handleSubmit}><BsSend/> Enviar</Button>   
+          </ButtonBottonContent>              
       </BoxContent>
     </Content>
   );

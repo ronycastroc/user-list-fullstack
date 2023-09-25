@@ -11,7 +11,7 @@ export const HeaderContent = styled.div`
   justify-content: center;
   column-gap: 15px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 
   img {
     width: 50px;
