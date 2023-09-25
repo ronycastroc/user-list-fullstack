@@ -2,11 +2,12 @@ import { ButtonContent } from "./style";
 
 interface ButtonProps {
   children: React.ReactNode;
+  onClick: () => void;
 }
 
-export default function Button({ children }: ButtonProps) {
+export default function Button({ children, onClick }: ButtonProps) {
   return (
-    <ButtonContent>
+    <ButtonContent onClick={onClick}>
       <p>{children}</p>
     </ButtonContent>
   );

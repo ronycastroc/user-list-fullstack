@@ -16,6 +16,7 @@ export default function Form({ label, type, placeHolder, inputRef }: FormProps) 
         type={type}
         placeholder={placeHolder}
         ref={inputRef}
+        required
       />
     </FormContent>
   );
