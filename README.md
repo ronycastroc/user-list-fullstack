@@ -1,10 +1,10 @@
 # User List
 
-O `User List` é uma aplicação web de fácil utilização projetada para gerenciar informações de usuários. Esta aplicação fornece cadastro, listagem, atualização e exclusão de registros de usuário. 
+`User List` é uma aplicação web de fácil utilização projetada para gerenciar informações de usuários. Esta aplicação fornece cadastro, listagem, atualização e exclusão de registros de usuário. 
 
 ### Tecnologias utilizadas
 ```bash
-React | Styled-Components | Typescript | NodeJS | NestJS | Swagger | Docker | Nginx 
+React | Styled-Components | Typescript | NodeJS | NestJS | TypeORM | Swagger | PostgreSQL | Docker | Nginx 
 ```
 
 ### Como rodar o projeto:
